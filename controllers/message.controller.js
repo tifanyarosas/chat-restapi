@@ -28,6 +28,16 @@ module.exports.send = async (req, res) => {
  * Fetch all existing messages to a given recipient, within a range of message IDs.
  */
 module.exports.get = async (req, res) => {
-  // TODO: Retrieve list of Messages
-  res.status(200).json({ messages : [ message ] });
+
+  	let limit = 100;
+  	if (!!req.body.limit) {
+  		limit = req.body.limit;
+  	}
+
+	const messages = await messageService.getMessageByRecipient(
+		req.body.recipient,
+		req.body.start,
+		limit
+	);
+  	res.status(200).json({ messages : [ messages ] });
 };

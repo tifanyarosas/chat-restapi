@@ -24,7 +24,20 @@ const createMessage = async (senderId, recipientId, content) => {
     });
 }
 
+const getMessageByRecipient = async (recipientId, offset, limit) => {
+
+  return await db.message.findAll({
+    where: {
+      recipientId: recipientId
+    },
+    offset: offset,
+    limit: limit
+  });
+}
+
+
 module.exports = {
-	validateMessage,
-	createMessage
+  validateMessage,
+  createMessage,
+  getMessageByRecipient
 }
