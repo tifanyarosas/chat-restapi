@@ -1,12 +1,27 @@
-const message = require('../models/message');
+const messageService = require('../services/message.service.js');
 
 /**
  * Send a message from one user to another. 
  * We support three types of messages `text`, `image` and `video` 
  */
 module.exports.send = async (req, res) => {
-  // TODO: Send a New Message
-  res.status(200).json(message);
+
+	const validationParams = messageService.validateMessage(req.body.content);
+	if (validationParams.error) {
+		res.status(400).send({message: "Failed! Invalid message", details: validationParams.error.details});
+		return;
+	}
+
+	try {
+		const createdMessage = await messageService.createMessage(
+			req.body.sender,
+			req.body.recipient,
+			req.body.content
+		);
+  		res.status(200).json({id: createdMessage.id, timestamp: createdMessage.timestamp});
+  	} catch(err) {
+  		res.status(422).json({message: "Failed sending the message!"});
+  	};
 }
 
 /**
