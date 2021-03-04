@@ -1,4 +1,6 @@
 const express = require('express');
+const db = require("./models");
+
 
 const userController = require('./controllers/user.controller');
 const healthController = require('./controllers/health.controller');
@@ -7,6 +9,8 @@ const msgController = require('./controllers/message.controller');
 
 const app = express();
 const port = process.env.PORT || 8080;
+
+db.sequelize.sync();
 
 app.post('/check', healthController.check);
 app.post('/user',  userController.createUser);
