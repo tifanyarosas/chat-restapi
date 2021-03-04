@@ -23,5 +23,5 @@ app.post('/messages', msgController.send);
 app.get('/messages',  msgController.get);
 
 app.listen(port, () => {
-  console.log(`ASAPP Challenge app running on port ${port}`);
+  console.log(`Chat app rest running on port ${port}`);
 });
