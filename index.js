@@ -1,6 +1,8 @@
 const express = require('express');
+const dotenv = require('dotenv');
 const db = require("./models");
 
+dotenv.config();
 
 const userController = require('./controllers/user.controller');
 const healthController = require('./controllers/health.controller');
