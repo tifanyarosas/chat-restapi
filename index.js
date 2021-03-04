@@ -5,6 +5,21 @@ const db = require("./models");
 
 dotenv.config();
 
+if (!process.env.JWT_SECRET_KEY) {
+  console.error("JWT_SECRET_KEY is not set");
+  process.exit(1);
+}
+
+if (!process.env.DATABASE_USER) {
+  console.error("DATABASE_USER is not set");
+  process.exit(1);
+}
+
+if (!process.env.DATABASE_PASSWORD) {
+  console.error("DATABASE_PASSWORD is not set");
+  process.exit(1);
+}
+
 const app = express();
 const port = process.env.PORT || 8080;
 
