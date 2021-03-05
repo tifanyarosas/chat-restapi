@@ -8,11 +8,36 @@ const validateMessage = (message) => {
               .valid('text', 'image', 'video')
               .required(), 
     text: Joi.string()
-              .required()
+      .when('type', { 
+        is: 'text', 
+        then: Joi.required(), 
+        otherwise: Joi.forbidden() 
+      }),
+    url: Joi.string().when('type', { 
+        is: Joi.string().valid('image', 'video'), 
+        then: Joi.required(), 
+        otherwise: Joi.forbidden() 
+      }),
+    height: Joi.number().integer().greater(1).when('type', { 
+        is: 'image', 
+        then: Joi.required(), 
+        otherwise: Joi.forbidden() 
+      }),
+    width: Joi.number().integer().greater(1).when('type', { 
+        is: 'image', 
+        then: Joi.required(), 
+        otherwise: Joi.forbidden() 
+      }),
+    source: Joi.string().when('type', { 
+        is: 'video', 
+        then: Joi
+          .valid('youtube', 'vimeo')
+          .required(), 
+        otherwise: Joi.forbidden() 
+      })
   }).options({ abortEarly: true }); 
 
   return schema.validate(message) 
-  return true
 }
 
 const createMessage = async (senderId, recipientId, content) => {
@@ -34,7 +59,6 @@ const getMessageByRecipient = async (recipientId, offset, limit) => {
     limit: limit
   });
 }
-
 
 module.exports = {
   validateMessage,
