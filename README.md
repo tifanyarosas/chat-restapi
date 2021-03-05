@@ -106,10 +106,10 @@ This is a REST API for a chat backend. You can do the following request:
 * **URL** /messages
 * **Method:**`GET`
 * **URL Params**
-   **Required:**
+   - **Required:**
    `recipient=[integer]`
    `start=[integer]` 
-   **Optional:**
+   - **Optional:**
    `limit=[integer]`
 * **Success Response:**
     Code: 200
