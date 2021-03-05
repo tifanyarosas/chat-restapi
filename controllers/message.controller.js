@@ -34,6 +34,11 @@ module.exports.get = async (req, res) => {
   		limit = req.body.limit;
   	}
 
+  	if (!req.body.recipient || !req.body.start) {
+  		res.status(400).send({message: "Failed! Missing required parameters!"});
+		return;
+  	}
+
 	const messages = await messageService.getMessageByRecipient(
 		req.body.recipient,
 		req.body.start,
