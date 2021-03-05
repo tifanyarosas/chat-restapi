@@ -8,8 +8,8 @@ This is a REST API for a chat backend. You can do the following request:
 - **URL:** /check
 - **Method:**`POST`
 - **Response sample:**
-    Code: 200
-    Content: `{ "health": "ok" }`
+    - Code: 200
+    - Content: `{ "health": "ok" }`
 
 #### Create a new User
 
@@ -21,8 +21,8 @@ This is a REST API for a chat backend. You can do the following request:
    `username=[string]`
    `password=[string]`
 - **Response samples:**
-    Code: 200
-    Content:
+    - Code: 200
+    - Content:
 ```
 { "id": 0 } // User ID of the newly created user.
 ```
@@ -37,8 +37,8 @@ This is a REST API for a chat backend. You can do the following request:
    `username=[string]`
    `password=[string]`
 * **Response samples:**
-    Code: 200
-    Content: 
+    - Code: 200
+    - Content: 
 ```
 { 
     "id": 0, // User ID of the user who logged in.
@@ -91,8 +91,8 @@ This is a REST API for a chat backend. You can do the following request:
 }
 ```
 * **Response samples:**
-    Code: 200
-    Content:
+    - Code: 200
+    - Content:
 ```
 {
     "id": 0,
@@ -112,8 +112,8 @@ This is a REST API for a chat backend. You can do the following request:
    - **Optional:**
    `limit=[integer]`
 * **Success Response:**
-    Code: 200
-    Content: 
+    - Code: 200
+    - Content: 
 ```
 { 
   "messages": [{
