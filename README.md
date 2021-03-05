@@ -131,8 +131,8 @@ This is a REST API for a chat backend. You can do the following request:
 
 ### Prerequisites
 
-Installed Nodejs >= v8.x
-Complete .env file with the following required global variables:
+- Installed Nodejs >= v8.x
+- Complete .env file with the following required global variables:
 
 `DATABASE_USER`
 `DATABASE_PASSWORD`
