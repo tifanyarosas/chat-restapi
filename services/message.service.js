@@ -3,10 +3,35 @@ const db = require("../models");
 
 const validateMessage = (message) => {
 
-  const schema = Joi.object({ 
+  const schema = getValidationSchema();
+  return schema.validate(message) 
+}
+
+const createMessage = async (senderId, recipientId, content) => {
+
+  return await db.message.create({
+      senderId: senderId,
+      recipientId: recipientId,
+      content: content
+    });
+}
+
+const getMessageByRecipient = async (recipientId, offset, limit) => {
+
+  return await db.message.findAll({
+    where: {
+      recipientId: recipientId
+    },
+    offset: offset,
+    limit: limit
+  });
+}
+
+function getValidationSchema() {
+  return Joi.object({ 
     type: Joi.string()
-              .valid('text', 'image', 'video')
-              .required(), 
+      .valid('text', 'image', 'video')
+      .required(), 
     text: Joi.string()
       .when('type', { 
         is: 'text', 
@@ -36,28 +61,6 @@ const validateMessage = (message) => {
         otherwise: Joi.forbidden() 
       })
   }).options({ abortEarly: true }); 
-
-  return schema.validate(message) 
-}
-
-const createMessage = async (senderId, recipientId, content) => {
-
-  return await db.message.create({
-      senderId: senderId,
-      recipientId: recipientId,
-      content: content
-    });
-}
-
-const getMessageByRecipient = async (recipientId, offset, limit) => {
-
-  return await db.message.findAll({
-    where: {
-      recipientId: recipientId
-    },
-    offset: offset,
-    limit: limit
-  });
 }
 
 module.exports = {
