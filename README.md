@@ -1,4 +1,4 @@
-# chat-restapi
+# Chat REST API
 
 This is a REST API for a chat backend. You can do the following request:
 
