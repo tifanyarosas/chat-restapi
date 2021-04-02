@@ -146,4 +146,8 @@ npm start
 
 ### Possible improvements
 - Add validation between the sender user and the sent token in the request when sending messages.
+- Add validation between the recipient user and the sent token in the request when getting messages.
+- Verify that the recipient and sender users are different when sending messages.
 - Add different types of messages' searches. For example, by type, by sender, etc.
+- Add coverage with tests
+- Generalize message types
